@@ -2,8 +2,7 @@ package com.blockdev.pbkk.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,17 +13,39 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Customers extends AbstractModel<Long> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false, length = 40)
-    private String firstname;
+    @Column(nullable = false)
+    private Long service_id;
 
-    @Column(nullable = false, length = 40)
-    private String lastname;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String company_name;
+
+    @Column(nullable = false)
+    private String country;
+
+    @Lob
+    @Column(nullable = false, length=512)
+    private String address;
+
+    @Column(nullable = false)
+    private String post_code;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "added_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
-    private Date addedDate;
+    @Column(nullable = false)
+    private String phone_number;
+
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    private Date created_at;
+
+    @Column(name = "updated_at", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP", insertable = false)
+    private Date updated_at;
 
 }

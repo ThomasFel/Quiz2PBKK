@@ -1,6 +1,5 @@
 package com.blockdev.pbkk.service;
 
-
 import com.blockdev.pbkk.model.AbstractModel;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -44,5 +43,4 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
         T getEntity = getEntityOpt.get();
         getRepository().save(entity);
     }
-
 }
