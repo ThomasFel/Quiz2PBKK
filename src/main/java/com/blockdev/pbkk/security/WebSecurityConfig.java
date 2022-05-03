@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/bower_components/**", "/dist/**", "/plugins/**", "/", "/profile", "/company", "/service", "/collaboration").permitAll()
+                .antMatchers("/bower_components/**", "/dist/**", "/plugins/**", "/", "/profile", "/company", "/service", "/collaboration", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -41,30 +41,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .permitAll();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //Use Spring Boots User detailsMAnager
-        JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
-
-        //Set our Datasource to use the one defined in application.properties
-        userDetailsService.setDataSource(datasource);
-
-        //Create BCryptPassword encoder
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        //add components
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
-        auth.jdbcAuthentication().dataSource(datasource);
-
-        // add new user "user" with password "password" - password will be encrypted
-        if (!userDetailsService.userExists("naruto")) {
-            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority("USER"));
-            User userDetails = new User("naruto", encoder.encode("1234"), authorities);
-            userDetailsService.createUser(userDetails);
-        }
     }
 
 }

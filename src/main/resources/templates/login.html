@@ -33,13 +33,13 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Login sistem euyyy 3x.</p>
+        <p class="login-box-msg">Login Admin BlockDev</p>
 
-        <div th:if="${param.error}">
-            <div class="callout callout-danger">
-                <p>Username or password invalid!</p>
-            </div>
-        </div>
+<!--        <div th:if="${param.error}">-->
+<!--            <div class="callout callout-danger">-->
+<!--                <p>Username or password invalid!</p>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <form th:action="@{/login}" method="post">
             <div class="form-group has-feedback">
@@ -52,9 +52,10 @@
             </div>
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                 </div>
             </div>
+            <a href="/register" class="text-center">Register a new membership</a>
         </form>
     </div>
 </div>
