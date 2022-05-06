@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService extends AbstractService<Users, Long> {
+
     @Autowired
     private UsersRepository usersRepository;
 
@@ -15,4 +16,5 @@ public class UsersService extends AbstractService<Users, Long> {
     protected JpaRepository<Users, Long> getRepository() {
         return usersRepository;
     }
+
 }
