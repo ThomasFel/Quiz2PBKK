@@ -1,10 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>BlockDev - Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockdev - Service</title>
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/image/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/custom/css/app.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css"/>
 </head>
-<body>
-    <h1>Test Service</h1>
+<body th:style="|background-image:url(@{/image/bg.jpg}); background-repeat: no-repeat; background-attachment: fixed;|">
+<div>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+            <div class="container text-light">
+                <a class="navbar-brand" style="font-weight: 600;" href="/">BlockDev</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/company">Company</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/service">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/collaboration">Collaboration</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="intro-example" class="p-5 text-center bg-image">
+            <div class="d-flex justify-content-center align-items-center h-100 text-center">
+                <div class="text-white">
+                    <h1 class="mb-3 display-2 fw-bold">Blockdev - Service</h1>
+                    <h4 class="mb-4">Services offered by Blockdev</h4>
+                    <a class="btn btn-outline-light btn-lg m-2" href='#services' role="button">Read More</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div id="main" class="container">
+        <section id="services">
+            <div class="text-center">
+                <h1 class="display-3 fw-bold">Our Services</h1>
+                <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
+                <h4 class="p-text text-white mb-5">Services offered by Blockdev</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fab fa-wordpress icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3"></i>
+                            <h4 class="mt-4 mb-3 text-white">Custom Plugin WordPress</h4>
+                            <p class="text-white">Get help creating your own custom wordpress plugin at an affordable price. Plugins that are made will also be maintained for up to 2 years without having to pay again!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fab fa-wordpress icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3" ></i>
+                            <h4 class="mt-4 mb-3 text-white">Custom Themes WordPress</h4>
+                            <p class="text-white">Get help creating your own custom wordpress themes at an affordable price. Themes that are made will also be maintained for up to 2 years without having to pay again!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fas fa-pen-fancy icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3"></i>
+                            <h4 class="mt-4 mb-3 text-white">WordPress Design</h4>
+                            <p class="text-white">Get help redesigning your website to be more user-friendly. Your WordPress website will also be responsive, which means it can be accessed using a cellphone or computer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fab fa-ubuntu icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3"></i>
+                            <h4 class="mt-4 mb-3 text-white">Deploy WordPress</h4>
+                            <p class="text-white">Confused when deploying wordpress to your server? Or are you confused about installing multiple WordPress CMS on one server? We can help to solve your problem</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fas fa-database icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3"></i>
+                            <h4 class="mt-4 mb-3 text-white">Backup & Restore WordPress</h4>
+                            <p class="text-white">We can help your company to move WordPress from one server to another</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 mb-4">
+                    <div class="card bg-dark border-0 shadow rounded-xs pt-5">
+                        <div class="card-body"> <i class="fas fa-bug icon-lg icon-cyan icon-bg-cyan icon-bg-circle mb-3"></i>
+                            <h4 class="mt-4 mb-3 text-white">Pentest WordPress</h4>
+                            <p class="text-white">Has your WordPress website been hacked? don't worry, we have a security team to help you or your company to solve this problem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="border-top footer text-light">
+        <p class="text-center mt-3">All right reserved &copy; 2022 - BlockDev</p>
+    </footer>
+</div>
+
+<script src="@{/vendor/jquery/jquery.js}"></script>
+<script src="@{/vendor/popper/popper.min.js}"></script>
+<script src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script src="@{/vendor/custom/js/site.js}"></script>
 </body>
 </html>
