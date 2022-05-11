@@ -29,19 +29,19 @@
                     <tr>
                         <th>No.</th>
                         <th>Nama Pelanggan</th>
+                        <th>Nama Perusahaan</th>
                         <th>Email</th>
-                        <th>Tanggal Registrasi</th>
                         <th>Opsi</th>
                     </tr>
 
                     <tr th:each="row : ${list}">
                         <td th:text="${row.id}"></td>
-                        <td th:text="${row.firstname + ' ' + row.lastname}"></td>
+                        <td th:text="${row.name}"></td>
+                        <td th:text="${row.company_name}"></td>
                         <td th:text="${row.email}"></td>
-                        <td th:text="${#dates.format(row.addedDate, 'dd/MM/yyyy')}"></td>
                         <td>
                             <a th:href="${'/customers/edit/' + row.id}" class="btn btn-primary btn-sm mb-2">Edit</a>
-                            <a th:href="${'/customers/delete/' + row.id}" class="btn btn-danger btn-sm" style="margin-left: 5px">Hapus</a>
+                            <a th:href="${'/customers/delete/' + row.id}" class="btn btn-danger btn-sm" style="margin-left: 5px" onclick="return confirm('Apa Anda yakin ingin menghapusnya?')">Hapus</a>
                         </td>
                     </tr>
                 </table>
