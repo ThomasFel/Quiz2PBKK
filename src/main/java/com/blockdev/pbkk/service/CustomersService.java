@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomersService extends AbstractService<Customers, Long> {
-
     @Autowired
     private CustomersRepository customersRepository;
 
@@ -16,5 +15,4 @@ public class CustomersService extends AbstractService<Customers, Long> {
     protected JpaRepository<Customers, Long> getRepository() {
         return customersRepository;
     }
-
 }

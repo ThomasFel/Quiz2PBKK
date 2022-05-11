@@ -1,6 +1,5 @@
 package com.blockdev.pbkk.service;
 
-
 import com.blockdev.pbkk.model.AbstractModel;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,6 @@ import java.io.Serializable;
 import java.util.Optional;
 
 public abstract class AbstractService<T extends AbstractModel<Long>, Long extends Serializable> {
-
     private static final int PAGE_SIZE = 5;
     protected abstract JpaRepository<T, Long> getRepository();
 
@@ -44,5 +42,4 @@ public abstract class AbstractService<T extends AbstractModel<Long>, Long extend
         T getEntity = getEntityOpt.get();
         getRepository().save(entity);
     }
-
 }

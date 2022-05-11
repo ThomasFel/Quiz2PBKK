@@ -1,9 +1,24 @@
-CREATE TABLE users
+CREATE TABLE user
 (
     id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    fullname VARCHAR(255)  NOT NULL,
     email VARCHAR(255)   NOT NULL,
+    first_name VARCHAR(255)  NOT NULL,
+    last_name VARCHAR(255)  NOT NULL,
     password VARCHAR(255) NOT NULL
+) ENGINE = InnoDb;
+
+CREATE TABLE role
+(
+    id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255)   NOT NULL
+) ENGINE = InnoDb;
+
+CREATE TABLE users_roles
+(
+    user_id BIGINT(50),
+    role_id BIGINT(50),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id)
 ) ENGINE = InnoDb;
 
 CREATE TABLE customers

@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("customers")
 public class CustomerController {
-
     private CustomersService customerService;
 
     @Autowired
@@ -42,40 +41,30 @@ public class CustomerController {
         model.addAttribute("currentIndex", current);
 
         return "customers/list";
-
     }
 
     @GetMapping("/add")
     public String add(Model model) {
-
         model.addAttribute("customer", new Customers());
         return "customers/form";
-
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
-
         model.addAttribute("customer", customerService.get(id));
         return "customers/form";
-
     }
 
     @PostMapping(value = "/save")
     public String save(Customers customer, final RedirectAttributes ra) {
-
         Customers save = customerService.save(customer);
         ra.addFlashAttribute("successFlash", "Cliente foi salvo com sucesso.");
         return "redirect:/customers";
-
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-
         customerService.delete(id);
         return "redirect:/customers";
-
     }
-
 }
