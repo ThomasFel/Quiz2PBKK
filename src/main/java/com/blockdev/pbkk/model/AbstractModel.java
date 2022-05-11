@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @MappedSuperclass
 public abstract class AbstractModel<Long extends Serializable> implements Serializable {
-
     private static final long serialVersionUID = -6323358535657100144L;
 
     @Id
@@ -33,16 +32,26 @@ public abstract class AbstractModel<Long extends Serializable> implements Serial
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+
+        if (getClass() != obj.getClass()) {
             return false;
+        }
+
         AbstractModel<?> other = (AbstractModel<?>) obj;
+
         if (id == null) {
             return other.id == null;
-        } else return id.equals(other.id);
-    }
+        }
 
+        else {
+            return id.equals(other.id);
+        }
+    }
 }

@@ -14,7 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Customers extends AbstractModel<Long> {
-
     @Column(nullable = false, length = 40)
     private String firstname;
 
@@ -26,5 +25,4 @@ public class Customers extends AbstractModel<Long> {
 
     @Column(name = "added_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
     private Date addedDate;
-
 }
