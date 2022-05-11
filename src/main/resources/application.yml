@@ -1,9 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring_adminlte?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta&useSSL=false
+    url: jdbc:mysql://localhost:3306/blockdev?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta&useSSL=false
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-circular-references: true
   jpa:
     show-sql: true
     hibernate:
@@ -67,6 +69,3 @@ server:
 # 1 days = 1 * 24 * 60 * 60
 cookie:
   maxAge: 86400
-
-#hendisantika/password
-#admin/password

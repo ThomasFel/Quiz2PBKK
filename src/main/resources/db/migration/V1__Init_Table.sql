@@ -1,15 +1,24 @@
-CREATE TABLE users
+CREATE TABLE user
 (
-    username VARCHAR(50)  NOT NULL PRIMARY KEY,
-    password VARCHAR(255) NOT NULL,
-    enabled  BOOLEAN      NOT NULL
+    id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255)   NOT NULL,
+    first_name VARCHAR(255)  NOT NULL,
+    last_name VARCHAR(255)  NOT NULL,
+    password VARCHAR(255) NOT NULL
 ) ENGINE = InnoDb;
-CREATE TABLE authorities
+
+CREATE TABLE role
 (
-    username  VARCHAR(50) NOT NULL,
-    authority VARCHAR(50) NOT NULL,
-    FOREIGN KEY (username) REFERENCES users (username),
-    UNIQUE INDEX authorities_idx_1 (username, authority)
+    id BIGINT(50) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255)   NOT NULL
+) ENGINE = InnoDb;
+
+CREATE TABLE users_roles
+(
+    user_id BIGINT(50),
+    role_id BIGINT(50),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id),
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id)
 ) ENGINE = InnoDb;
 
 CREATE TABLE customers

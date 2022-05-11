@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Spring Boot AdminLTE 2 | Login</title>
+    <title>Spring Boot AdminLTE 2 | Registration</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/image/icon.png}">
     <!-- Bootstrap 3.3.7 -->
@@ -16,41 +16,51 @@
     <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
     <!-- iCheck -->
     <link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <b>Admin</b>LTE
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <!-- Success message -->
+        <div th:if="${param.success}">
+            <div class="alert alert-info">You've successfully registered!</div>
+        </div>
+
+        <div class="register-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
         </div>
 
         <div class="register-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Register a new membership</p>
 
-            <form th:action="@{/login}" method="POST">
+            <form th:action="@{/register}" method="POST" th:object="${user}">
                 <div class="form-group has-feedback">
-                    <input id="email" type="email" class="form-control" name="username" placeholder="Email" required autofocus="autofocus"/>
+                    <input id="firstName" type="text" class="form-control" placeholder="Firstname" th:field="*{firstName}" required autofocus="autofocus">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input id="lastName" type="text" class="form-control" placeholder="Lastname" th:field="*{lastName}" required autofocus="autofocus">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input id="email" type="email" class="form-control" placeholder="Email" th:field="*{email}" required autofocus="autofocus">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required autofocus="autofocus"/>
+                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required autofocus="autofocus">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
                     </div>
                 </div>
             </form>
 
             <div style="margin-top: 20px">
-                <a href="/register" class="text-center">Register a new membership</a>
+                <a href="/login" class="text-center">I already have a membership</a>
             </div>
         </div>
     </div>

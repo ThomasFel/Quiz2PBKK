@@ -1,7 +1,10 @@
 package com.blockdev.pbkk.security;
 
+import com.blockdev.pbkk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,50 +24,42 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
-    private DataSource datasource;
+    private UserService userService;
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(userService);
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/bower_components/**", "/dist/**", "/plugins/**", "/", "/profile", "/company", "/service", "/collaboration").permitAll()
+                .antMatchers("/bower_components/**", "/dist/**", "/plugins/**", "/", "/profile", "/company", "/service", "/collaboration", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
-                .failureUrl("/login")
+                .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/dashboard")
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //Use Spring Boots User detailsMAnager
-        JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
-
-        //Set our Datasource to use the one defined in application.properties
-        userDetailsService.setDataSource(datasource);
-
-        //Create BCryptPassword encoder
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        //add components
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
-        auth.jdbcAuthentication().dataSource(datasource);
-
-        // add new user "user" with password "password" - password will be encrypted
-        if (!userDetailsService.userExists("naruto")) {
-            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority("USER"));
-            User userDetails = new User("naruto", encoder.encode("1234"), authorities);
-            userDetailsService.createUser(userDetails);
-        }
-    }
-
 }
