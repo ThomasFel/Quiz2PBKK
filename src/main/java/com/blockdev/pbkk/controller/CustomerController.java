@@ -58,7 +58,7 @@ public class CustomerController {
     @PostMapping(value = "/save")
     public String save(Customers customer, final RedirectAttributes ra) {
         Customers save = customerService.save(customer);
-        ra.addFlashAttribute("successFlash", "Cliente foi salvo com sucesso.");
+        ra.addFlashAttribute("successFlash", "Customer added.");
         return "redirect:/customers";
     }
 

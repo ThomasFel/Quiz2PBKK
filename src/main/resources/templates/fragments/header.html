@@ -1,11 +1,12 @@
 <div th:fragment="header" th:remove="tag">
     <!-- Logo -->
-    <a class="logo" href="index2.html">
+    <a class="logo" href="/dashboard">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>S</b>AL</span>
+        <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Spring</b>AdminLte</span>
+        <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
+
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
@@ -21,29 +22,15 @@
                         <img alt="User Image" class="user-image" th:src="@{/dist/img/user2-160x160.jpg}"/>
                         <span class="hidden-xs">AdminLTE</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header">
-                            <img alt="User Image" class="img-circle" th:src="@{/dist/img/user2-160x160.jpg}"/>
 
-                            <p>
-                                Uzumaki Naruto - Hokage
-                            </p>
-                        </li>
+                    <ul class="dropdown-menu" style="width: 200px">
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a class="btn btn-default btn-flat" href="#">My Contacts</a>
-                            </div>
-                            <div class="pull-right">
-                                <a class="btn btn-default btn-flat" href="/logout">Logout</a>
+                            <div style="text-align: center">
+                                <a class="btn btn-default btn-flat" style="width: 170px" href="/logout"><span class="glyphicon glyphicon-off" style="margin-right: 5px"></span>Logout</a>
                             </div>
                         </li>
                     </ul>
-                </li>
-                <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a data-toggle="control-sidebar" href="#"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>
