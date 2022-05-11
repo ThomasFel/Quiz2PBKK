@@ -1,81 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Registration and Login App</title>
-
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Spring Boot AdminLTE 2 | Login</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/image/icon.png}">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" th:href="@{/bower_components/bootstrap/dist/css/bootstrap.min.css}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" th:href="@{/bower_components/font-awesome/css/font-awesome.min.css}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" th:href="@{/bower_components/Ionicons/css/ionicons.min.css}">
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <!-- iCheck -->
+    <link rel="stylesheet" th:href="@{/plugins/iCheck/square/blue.css}">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 
 </head>
-<body>
-
-<!-- create navigation bar ( header) -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration and
-                Login Module</a>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <b>Admin</b>LTE
         </div>
-    </div>
-</nav>
 
-<br>
-<br>
-<div class = "container">
-    <div class = "row">
-        <div class = "col-md-6 col-md-offset-3">
+        <div class="register-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
 
-            <h1> User Login Page </h1>
-            <form th:action="@{/login}" method="post">
-
-                <!-- error message -->
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">Invalid username or
-                        password.</div>
+            <form th:action="@{/login}" method="POST">
+                <div class="form-group has-feedback">
+                    <input id="email" type="email" class="form-control" name="username" placeholder="Email" required autofocus="autofocus"/>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
 
-                <!-- logout message -->
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">You have been logged out.</div>
+                <div class="form-group has-feedback">
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required autofocus="autofocus"/>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
-                <div class = "form-group">
-                    <label for ="username"> Username </label> :
-                    <input type="text" class = "form-control" id ="username" name = "username"
-                           placeholder="Enter Email ID" autofocus="autofocus">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>: <input type="password"
-                                                                   id="password" name="password" class="form-control"
-                                                                   placeholder="Enter Password" />
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" name="login-submit" id="login-submit"
-                                   class="form-control btn btn-primary" value="Log In" />
-                        </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
                 </div>
             </form>
-            <div class="form-group">
-						<span>New user? <a href="/" th:href="@{/register}">Register
-								here</a></span>
+
+            <div style="margin-top: 20px">
+                <a href="/register" class="text-center">Register a new membership</a>
             </div>
         </div>
     </div>
-</div>
+
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../plugins/iCheck/icheck.min.js"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' /* optional */
+        });
+      });
+    </script>
 </body>
 </html>
